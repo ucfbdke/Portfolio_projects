@@ -16,6 +16,19 @@ FROM Portfolio..Deaths$
 WHERE continent IS NOT NULL
 ORDER BY 1,2;
 
+-- Average non-NULL reproduction rate per country and R level classification.
+SELECT location, population, AVG(CAST(reproduction_rate AS DEC)) AS Average_rep_rate,
+CASE
+WHEN(AVG(CAST(reproduction_rate AS DEC)) <= 0.8) THEN 'Low reproduction rate'
+WHEN(AVG(CAST(reproduction_rate AS DEC)) BETWEEN 0.8 AND 1.05) THEN 'Medium reproduction rate'
+ELSE 'High reproduction rate'
+END AS R_level
+FROM Portfolio..Deaths$
+WHERE continent IS NOT NULL AND continent NOT IN('Africa', 'Asia')
+GROUP BY location, population
+HAVING AVG(CAST(reproduction_rate AS DEC)) IS NOT NULL
+ORDER BY Average_rep_rate
+
 -- When did the case ratio reach 10% if it did (per country)?
 SELECT location, MIN(date) AS date, MIN((total_cases/population)) AS max_case_ratio
 FROM Portfolio..Deaths$
