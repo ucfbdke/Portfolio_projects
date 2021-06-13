@@ -1,6 +1,10 @@
 SELECT TOP(100) *
 FROM Thrive..May
 
+-- Merge first and last names
+SELECT ID, StartDate, EndDate, [IP Address], [Email Address], CONCAT([First Name], ' ', LastName) AS Name, Location
+FROM Thrive..May
+
 -- Count completion in each month.
 SELECT FORMAT(EndDate, 'yyyy-MM') AS Date1, FORMAT(EndDate, 'MMMM yyyy') AS Date2, COUNT(ID) AS No_of_completions
 FROM Thrive..May
