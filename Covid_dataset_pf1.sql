@@ -90,7 +90,7 @@ WHERE dea.continent IS NOT NULL
 ORDER BY dea.location, dea.date
 
 -- Total population and vaccinations (cumulative percentage)
-WITH Pop_Vac(continent, location, date, population, new_vaccinations, Cumulative_count) AS
+;WITH Pop_Vac(continent, location, date, population, new_vaccinations, Cumulative_count) AS
 (SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
 SUM(CONVERT(INT, vac.new_vaccinations)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date)
 AS Cumulative_count
