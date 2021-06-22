@@ -1,3 +1,7 @@
+-- The aim of this document is to showcase my skills with SQL in general, and Transact-SQL in particular.
+-- I used a dataset on COVID-19 deaths and vaccinations including almost 100,000 entries.
+-- Link to dataset: https://ourworldindata.org/covid-deaths
+
 -- Explore dataset without continents
 SELECT TOP(100) *
 FROM Portfolio..Deaths$
